@@ -1,6 +1,6 @@
 # Hasan Iqbal
 
-I build AI, ML, and full-stack systems — currently focused on inference performance, computer vision pipelines, and production AI. Open to internships and full-time roles.
+I build AI, ML, and full-stack systems, currently focused on inference performance, computer vision pipelines, and production AI. Open to internships and full-time roles.
 
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
