@@ -26,6 +26,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 | **Web + iOS + Android** | one full-stack AI rental marketplace, all three sharing a single API |
 | **9 waves** | of optimization experiments — successes and failures both publicly documented |
 | **NFC + XRP Ledger** | smart-lock IoT capstone with on-chain authentication |
+| **96 chains** | auto-traced by an OpenCV pipeline that finds where a charm can physically hang |
 
 ---
 
@@ -59,6 +60,16 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 - ProPainter stack uses **RAFT optical flow**, **Focal Transformer attention**, and **DCNv4 deformable convolutions** — including custom DCNv4 CUDA kernels.
 - TensorRT FP16/FP8 quantization end-to-end, GPU-accelerated NVDEC/NVENC preprocessing, FFmpeg reassembly with audio merge.
 - Designed for horizontal scaling across distributed GPU workers.
+
+### [Charm Bar](https://github.com/redhasanh1/Product-Store) — CV-driven jewelry configurator
+
+**A live Shopify storefront whose charm builder figures out, from a product photo alone, where a charm can physically attach to each chain — and renders it at true physical scale.**
+
+- **OpenCV / scikit-image pipeline** turns a studio photo into attachment coordinates: HSV segmentation that rejects the drop shadow, thickness-adaptive morphological bridging, hole-filling, skeletonization + spur pruning, then an ordered walk of the chain.
+- **Placement mode is inferred from chain construction** — link apertures for open-link chains, metal gaps for beaded chains, width-profile minima ("necks") for gem chains, and dangle-only for solid weaves where nothing can hook through. Set stones are excluded by a clustered-saturation test.
+- **True physical scale in the browser** — the traced loop *is* the chain's real length, giving an exact mm↔pixel bridge, so a 9 mm and a 29 mm charm render at honest relative sizes and rescale with the chosen chain length.
+- Per-pixel hit testing, nearest-attachment drop routing, and bail-pivot collision response so crowded charms fan apart like real ones.
+- Coordinates persist to Shopify metafields via an idempotent writer with automatic backups and dry-run; ~1,500 products, 96 chains scanned.
 
 ### [DecentLock](https://github.com/StephanVorster/DecentLockFirmware)
 
