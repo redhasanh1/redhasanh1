@@ -24,7 +24,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 | **48** | transformer attention layers replaced with custom TensorRT engines |
 | **1,247** | negotiations analyzed in a closed-loop learning system |
 | **Web + iOS + Android** | one full-stack AI rental marketplace, all three sharing a single API |
-| **9 waves** | of optimization experiments — successes and failures both publicly documented |
+| **9 waves** | of optimization experiments, successes and failures both publicly documented |
 | **NFC + XRP Ledger** | smart-lock IoT capstone with on-chain authentication |
 | **96 chains** | auto-traced by an OpenCV pipeline that finds where a charm can physically hang |
 
@@ -36,66 +36,77 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 **An AI-powered rental marketplace that replies to inquiries in under 60 seconds, shows you the real monthly cost of a place instead of just the rent, and helps you negotiate with landlords using patterns learned from 1,247 past conversations.**
 
-- Full-stack across **web (vanilla JS), iOS (SwiftUI), and Android (Java)** — all sharing a Node/Express + Supabase backend.
+- Full-stack across **web (vanilla JS), iOS (SwiftUI), and Android (Java)**: all sharing a Node/Express + Supabase backend.
 - Closed-loop learning system over 22 response templates with epsilon-greedy selection (top template: 82% win rate over 45 samples).
-- Vision AI pricing model on **Cloudflare Workers AI (Llama 3.2 11B Vision)** — luxury score, money-feature extraction, suggested rent.
+- Vision AI pricing model on **Cloudflare Workers AI (Llama 3.2 11B Vision)**: luxury score, money-feature extraction, suggested rent.
 - 15+ external data feeds (RentCast, Walk Score, GreatSchools, FBI Crime, FEMA, NOAA, EPA, BLS, USGS, Google Distance Matrix) joined into per-listing market intelligence.
 - 60+ REST endpoints, 27 SQL migrations with row-level security, real-time chat via Supabase Realtime, Stripe payments, Azure ID verification.
 
 ### [Video-Generator](https://github.com/redhasanh1/Video-Generator)
 
-**Text-to-video inference performance project — took a 19B-parameter diffusion transformer from 295 seconds per clip to 8.4 seconds on a single RTX 5090.**
+**Text-to-video inference performance project, took a 19B-parameter diffusion transformer from 295 seconds per clip to 8.4 seconds on a single RTX 5090.**
 
 - **35× end-to-end speedup** across 9 documented "waves" of optimization. Every wave has a benchmark verdict; the failures got post-mortems too.
 - **TensorRT attention engines** for all 48 transformer attention layers, lazy-loaded to avoid OOM (`TRTAttentionPatcher`).
 - **FP8 GEMM** on Blackwell tensor cores, **SageAttention3** with FP4 quantization, **TeaCache** at 0.10 threshold, **torch.compile** with max-autotune and graph-break elimination.
-- Documented failure post-mortems for 9 abandoned experiments — TGATE caching, DeepCache, AdaCache, 2:4 sparsity, K/V precomputation, and more — each with a written root cause.
+- Documented failure post-mortems for 9 abandoned experiments (TGATE caching, DeepCache, AdaCache, 2:4 sparsity, K/V precomputation, and more), each with a written root cause.
 - Built on top of Lightricks' LTX-2 foundation model. The optimization work and tooling are mine.
 
 ### [Neural-Video-Inpainting](https://github.com/redhasanh1/Neural-Video-Inpainting)
 
-**Production-grade video object-removal pipeline. Detects, tracks, and reconstructs target regions across temporal sequences — built for distributed GPU cloud deployment.**
+**Production-grade video object-removal pipeline. Detects, tracks, and reconstructs target regions across temporal sequences, built for distributed GPU cloud deployment.**
 
 - Multi-model architecture: **YOLOv8** (custom-trained on 1,000+ annotated frames) → **SAM2** mask propagation → **ProPainter** temporal inpainting.
-- ProPainter stack uses **RAFT optical flow**, **Focal Transformer attention**, and **DCNv4 deformable convolutions** — including custom DCNv4 CUDA kernels.
+- ProPainter stack uses **RAFT optical flow**, **Focal Transformer attention**, and **DCNv4 deformable convolutions**: including custom DCNv4 CUDA kernels.
 - TensorRT FP16/FP8 quantization end-to-end, GPU-accelerated NVDEC/NVENC preprocessing, FFmpeg reassembly with audio merge.
 - Designed for horizontal scaling across distributed GPU workers.
 
-### [Charm Bar](https://github.com/redhasanh1/Product-Store) — CV-driven jewelry configurator
+### [Charm Bar](https://github.com/redhasanh1/Product-Store): CV-driven jewelry configurator
 
-**A live Shopify storefront whose charm builder figures out, from a product photo alone, where a charm can physically attach to each chain — and renders it at true physical scale.**
+**A live Shopify storefront whose charm builder figures out, from a product photo alone, where a charm can physically attach to each chain, and renders it at true physical scale.**
 
 - **OpenCV / scikit-image pipeline** turns a studio photo into attachment coordinates: HSV segmentation that rejects the drop shadow, thickness-adaptive morphological bridging, hole-filling, skeletonization + spur pruning, then an ordered walk of the chain.
-- **Placement mode is inferred from chain construction** — link apertures for open-link chains, metal gaps for beaded chains, width-profile minima ("necks") for gem chains, and dangle-only for solid weaves where nothing can hook through. Set stones are excluded by a clustered-saturation test.
-- **True physical scale in the browser** — the traced loop *is* the chain's real length, giving an exact mm↔pixel bridge, so a 9 mm and a 29 mm charm render at honest relative sizes and rescale with the chosen chain length.
+- **Placement mode is inferred from chain construction**: link apertures for open-link chains, metal gaps for beaded chains, width-profile minima ("necks") for gem chains, and dangle-only for solid weaves where nothing can hook through. Set stones are excluded by a clustered-saturation test.
+- **True physical scale in the browser**: the traced loop *is* the chain's real length, giving an exact mm↔pixel bridge, so a 9 mm and a 29 mm charm render at honest relative sizes and rescale with the chosen chain length.
 - Per-pixel hit testing, nearest-attachment drop routing, and bail-pivot collision response so crowded charms fan apart like real ones.
 - Coordinates persist to Shopify metafields via an idempotent writer with automatic backups and dry-run; ~1,500 products, 96 chains scanned.
 
 ### [DecentLock](https://github.com/StephanVorster/DecentLockFirmware)
 
-**An NFC-controlled smart lock with on-chain authentication. Four-person Sheridan Computer Engineering Technology capstone — firmware on the lock device, mobile app on the user's phone, access rights mediated by the XRP Ledger.**
+**An NFC-controlled smart lock with on-chain authentication. Four-person Sheridan Computer Engineering Technology capstone, firmware on the lock device, mobile app on the user's phone, access rights mediated by the XRP Ledger.**
 
-- Embedded **Python firmware** on the lock handling NFC tag reads, secure communication, and lock-state transitions — [`StephanVorster/DecentLockFirmware`](https://github.com/StephanVorster/DecentLockFirmware).
+- Embedded **Python firmware** on the lock handling NFC tag reads, secure communication, and lock-state transitions, [`StephanVorster/DecentLockFirmware`](https://github.com/StephanVorster/DecentLockFirmware).
 - **React Native mobile companion** ([`SheridanCapstoneApp-Staging3`](https://github.com/redhasanh1/SheridanCapstoneApp-Staging3)) for managing tags, granting access, and monitoring lock activity.
-- **XRP Ledger** for user authentication — access rights are recorded on-chain so a shared device can be controlled by anyone the owner authorizes, without a central server in the middle.
-- Hardware + firmware + mobile + ledger — a wider full-stack than most undergrad portfolio projects.
+- **XRP Ledger** for user authentication, access rights are recorded on-chain so a shared device can be controlled by anyone the owner authorizes, without a central server in the middle.
+- Hardware + firmware + mobile + ledger, a wider full-stack than most undergrad portfolio projects.
+
+---
+
+### [whoknows](https://github.com/redhasanh1/whoknows)
+
+**A Chrome extension that auto-fills signup forms with traceable email aliases, so when spam arrives you know exactly which site leaked or sold your address. No relay servers, no account, no third party in your mail path.**
+
+- **Manifest V3 extension in TypeScript**, detects signup forms in the page and injects a per-site alias on the fly.
+- **Alias-per-site scheme** built on plus-addressing, so mail still lands in your existing inbox with zero forwarding infrastructure.
+- **Zero telemetry by design**, nothing leaves the browser, which is the whole point of a privacy tool.
+- 51 passing tests covering form detection and alias generation. MIT licensed.
 
 ---
 
 ## Smaller projects worth a look
 
-- **[Chess Web App](https://github.com/KevinDang12/web-project)** — Full-stack browser chess game built with Kevin Dang. Real chess rules with move validation and win detection, drag-and-drop UX, accounts via Node/Express REST API, save/load/delete games per user, shared scoreboard, Vitest-tested server logic. Vanilla JS frontend, JSON-file persistence.
-- **[Olympics Athlete Data Analysis](https://github.com/redhasanh1/RoomFinderAI/tree/main/data%20stufff/project-g4-hiqbal7-slmason-sthakkar11-eshahnaghi-main)** — Group project (4 people). Python data-cleaning pipeline over the Olympic Games datasets: schema validation, malformed-date repair, missing-value strategies, duplicate detection across athlete records. Light, but it's where I first started thinking carefully about data quality before touching production data systems.
+- **[Chess Web App](https://github.com/KevinDang12/web-project)**: Full-stack browser chess game built with Kevin Dang. Real chess rules with move validation and win detection, drag-and-drop UX, accounts via Node/Express REST API, save/load/delete games per user, shared scoreboard, Vitest-tested server logic. Vanilla JS frontend, JSON-file persistence.
+- **[Olympics Athlete Data Analysis](https://github.com/redhasanh1/RoomFinderAI/tree/main/data%20stufff/project-g4-hiqbal7-slmason-sthakkar11-eshahnaghi-main)**: Group project (4 people). Python data-cleaning pipeline over the Olympic Games datasets: schema validation, malformed-date repair, missing-value strategies, duplicate detection across athlete records. Light, but it's where I first started thinking carefully about data quality before touching production data systems.
 
 ---
 
 ## Earlier work
 
-A timeline of where I was learning. Not flagship work — left here because portfolios should show the slope, not just the peak.
+A timeline of where I was learning. Not flagship work, left here because portfolios should show the slope, not just the peak.
 
-- **[CaseStudy1_1](https://github.com/redhasanh1/CaseStudy1_1)** — Kotlin Android case study (2023).
-- **[Website](https://github.com/redhasanh1/Website)** — Call of Duty stats / records site (2024).
-- **[ActualProject2](https://github.com/redhasanh1/ActualProject2)**, **[case](https://github.com/redhasanh1/case)**, **[new](https://github.com/redhasanh1/new)** — early exploration / learning repos (2022–2023).
+- **[CaseStudy1_1](https://github.com/redhasanh1/CaseStudy1_1)**: Kotlin Android case study (2023).
+- **[Website](https://github.com/redhasanh1/Website)**: Call of Duty stats / records site (2024).
+- **[ActualProject2](https://github.com/redhasanh1/ActualProject2)**, **[case](https://github.com/redhasanh1/case)**, **[new](https://github.com/redhasanh1/new)**: early exploration / learning repos (2022-2023).
 
 ---
 
@@ -111,11 +122,4 @@ A timeline of where I was learning. Not flagship work — left here because port
 
 ---
 
-## GitHub
-
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=redhasanh1&show_icons=true&hide_border=true&theme=tokyonight&count_private=true)](https://github.com/redhasanh1)
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=redhasanh1&layout=compact&hide_border=true&theme=tokyonight&langs_count=8)](https://github.com/redhasanh1)
-
----
-
-**Hasan Iqbal** — [github.com/redhasanh1](https://github.com/redhasanh1) — hasaniqbal2@hotmail.com
+**Hasan Iqbal** · [github.com/redhasanh1](https://github.com/redhasanh1) · hasaniqbal2@hotmail.com
