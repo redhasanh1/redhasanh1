@@ -19,6 +19,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 | | |
 |---|---|
+| **Humanoid** | life-size 3D-printed robot in progress, five-finger tendon hands driven by a Cerebras-hosted multimodal model |
 | **35×** | inference speedup on a 19B-parameter video diffusion model (RTX 5090) |
 | **YOLOv8** | custom detector trained on 1,000+ annotated frames, deployed via TensorRT |
 | **48** | transformer attention layers replaced with custom TensorRT engines |
@@ -31,6 +32,17 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 ---
 
 ## Featured projects
+
+### [robotai](https://github.com/redhasanh1/robotai) · [live site](https://site-production-8e40.up.railway.app)
+
+**A life-size, 3D-printed humanoid that learns household chores (tidying, fetching, cooking prep) from demonstrations, with a fast multimodal model on Cerebras doing the thinking. Final-year capstone, in progress.**
+
+<p align="center"><img src="robotai-hand.png" width="620" alt="robotai's right forearm and five-finger hand, assembled and pulled apart into its 32 parts"></p>
+
+- **Upper body adapted from InMoov** (Gael Langevin's open design), with **walking legs I designed in Blender**; the live site renders the whole robot in 3D (three.js + URDF) and pulls the hand apart part by part.
+- **Tendon-driven hands**: 5 MG996R servos per hand in the forearm pull 200 lb braided tendons; one ESP32 + PCA9685 per hand, 6 V servo rails.
+- **Two-speed brain**: a small local policy (ACT / SmolVLA, trained on my own teleoperated demos) runs the fingers at 30-50 Hz; a Cerebras-hosted vision-language model plans, picks grasps and checks success at interactive rates.
+- Full BOM, print list and week-by-week build plan published on the site; parts sourced under a C$500-per-arm budget with everything structural printed.
 
 ### [RoomFinderAI](https://github.com/redhasanh1/RoomFinderAI)
 
