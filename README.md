@@ -19,7 +19,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 | | |
 |---|---|
-| **Humanoid** | life-size 3D-printed robot in progress, five-finger tendon hands driven by a Cerebras-hosted multimodal model |
+| **Humanoid** | full-size 3D-printed robot in progress, driven by neural networks that answer fast enough to react in real time |
 | **35×** | inference speedup on a 19B-parameter video diffusion model (RTX 5090) |
 | **YOLOv8** | custom detector trained on 1,000+ annotated frames, deployed via TensorRT |
 | **48** | transformer attention layers replaced with custom TensorRT engines |
@@ -35,14 +35,25 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 ### [robotai](https://github.com/redhasanh1/robotai) · [live site](https://site-production-8e40.up.railway.app)
 
-**A life-size, 3D-printed humanoid that learns household chores (tidying, fetching, cooking prep) from demonstrations, with a fast multimodal model on Cerebras doing the thinking. Final-year capstone, in progress.**
+**A full-size humanoid robot that can see, think and act fast enough to help around a home. It is built from 3D-printed parts and cheap motors, and its brain is a set of neural networks running on Cerebras hardware that answers in a fraction of a second. Final-year capstone, in progress.**
 
 <p align="center"><img src="robotai-hand.png" width="620" alt="robotai's right forearm and five-finger hand, assembled and pulled apart into its 32 parts"></p>
 
-- **Upper body adapted from InMoov** (Gael Langevin's open design), with **walking legs I designed in Blender**; the live site renders the whole robot in 3D (three.js + URDF) and pulls the hand apart part by part.
-- **Tendon-driven hands**: 5 MG996R servos per hand in the forearm pull 200 lb braided tendons; one ESP32 + PCA9685 per hand, 6 V servo rails.
-- **Two-speed brain**: a small local policy (ACT / SmolVLA, trained on my own teleoperated demos) runs the fingers at 30-50 Hz; a Cerebras-hosted vision-language model plans, picks grasps and checks success at interactive rates.
-- Full BOM, print list and week-by-week build plan published on the site; parts sourced under a C$500-per-arm budget with everything structural printed.
+**The problem.** A robot that watches a camera and decides what to do next has to run a big vision-language model over and over. On normal GPUs each answer takes seconds, so most robots only "think" once in a while and hope the world did not change in between. That is why home robots feel slow and clumsy.
+
+**The idea.** I work at Cerebras, whose chips run these models many times faster than a GPU. robotai is built around that speed:
+
+- **Two brains, two speeds.** A small neural network on the robot (trained on my own demonstrations with ACT / SmolVLA) moves the joints 30 to 50 times a second. A large vision-language model on Cerebras looks at the camera, plans the next step and checks if the last one worked, several times a second instead of once every few seconds.
+- **It can try several plans and pick the best one.** Because each answer is so fast, the robot can ask the big model for many possible next moves and keep the best one, while it is still moving. On a GPU that would take too long to be useful.
+- **It notices mistakes right away.** A dropped cup or a missed grab gets caught on the next check, not after the whole task has gone wrong.
+- **You can talk to it while it works.** Saying "no, the blue one" changes the plan almost instantly.
+
+**The body.**
+
+- Life-size humanoid: arms and five-finger hands adapted from the open-source InMoov design, plus walking legs I designed in Blender. Every structural part is 3D printed.
+- Tendon hands: servos in each forearm pull braided lines like muscles, run by an ESP32 and a PCA9685 board per hand.
+- The live site shows the full robot in 3D and lets you pull the hand apart piece by piece.
+- Parts list, print files and a week-by-week build plan are public on the site. The first hand parts are sliced and submitted for printing.
 
 ### [RoomFinderAI](https://github.com/redhasanh1/RoomFinderAI)
 
