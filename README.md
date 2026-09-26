@@ -19,7 +19,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 | | |
 |---|---|
-| **Humanoid** | full-size 3D-printed robot in progress, driven by neural networks that answer fast enough to react in real time |
+| **PINN Humanoid** | full-size 3D-printed robot in progress: physics-informed neural networks, plus a vision-language brain fast enough to react in real time |
 | **35×** | inference speedup on a 19B-parameter video diffusion model (RTX 5090) |
 | **YOLOv8** | custom detector trained on 1,000+ annotated frames, deployed via TensorRT |
 | **48** | transformer attention layers replaced with custom TensorRT engines |
@@ -33,9 +33,9 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 ## Featured projects
 
-### [robotai](https://github.com/redhasanh1/robotai) · [live site](https://site-production-8e40.up.railway.app)
+### [PINN Humanoid](https://github.com/redhasanh1/robotai) · [live site](https://site-production-8e40.up.railway.app)
 
-**A full-size humanoid robot that can see, think and act fast enough to help around a home. It is built from 3D-printed parts and cheap motors, and its brain is a set of neural networks running on Cerebras hardware that answers in a fraction of a second. Final-year capstone, in progress.**
+**A physics-informed neural network robot. A full-size 3D-printed humanoid whose networks respect the robot's real physics, driven by a Cerebras vision-language model that answers fast enough to react in real time. Final-year capstone, in progress.**
 
 <p align="center"><img src="robotai-hand.png" width="620" alt="robotai's right forearm and five-finger hand, assembled and pulled apart into its 32 parts"></p>
 
@@ -47,6 +47,8 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 - **It can try several plans and pick the best one.** Because each answer is so fast, the robot can ask the big model for many possible next moves and keep the best one, while it is still moving. On a GPU that would take too long to be useful.
 - **It notices mistakes right away.** A dropped cup or a missed grab gets caught on the next check, not after the whole task has gone wrong.
 - **You can talk to it while it works.** Saying "no, the blue one" changes the plan almost instantly.
+
+**Why physics-informed.** Cheap servos and tendons are sloppy: lines stretch, gears have play, motors sag under load. Instead of hiding that with expensive parts, the low-level networks are trained with the robot's real physics built in (joint limits, tendon stretch, torque and gravity), so they stay accurate and safe on cheap hardware and need fewer demonstrations to learn.
 
 **The body.**
 
