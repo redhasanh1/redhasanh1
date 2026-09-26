@@ -41,7 +41,7 @@ I build AI, ML, and full-stack systems, currently focused on inference performan
 
 **The problem.** A robot that watches a camera and decides what to do next has to run a big vision-language model over and over. On normal GPUs each answer takes seconds, so most robots only "think" once in a while and hope the world did not change in between. That is why home robots feel slow and clumsy.
 
-**The idea.** I work at Cerebras, whose chips run these models many times faster than a GPU. robotai is built around that speed:
+**The idea.** I'm leveraging Cerebras hardware, whose chips run these models many times faster than a GPU. robotai is built around that speed:
 
 - **Two brains, two speeds.** A small neural network on the robot (trained on my own demonstrations with ACT / SmolVLA) moves the joints 30 to 50 times a second. A large vision-language model on Cerebras looks at the camera, plans the next step and checks if the last one worked, several times a second instead of once every few seconds.
 - **It can try several plans and pick the best one.** Because each answer is so fast, the robot can ask the big model for many possible next moves and keep the best one, while it is still moving. On a GPU that would take too long to be useful.
